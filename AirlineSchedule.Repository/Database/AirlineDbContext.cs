@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace AirlineSchedule.Repository
 
 {
-    internal class AirlineDbContext : DbContext
+    public class AirlineDbContext : DbContext
     {
         public DbSet<City> Cities { get; set; }
         public DbSet<Airline> Airlines { get; set; }
@@ -20,10 +20,9 @@ namespace AirlineSchedule.Repository
         {
             if (!builder.IsConfigured)
             {
-                string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\airline.mdf;Integrated Security=True;MultipleActiveResultSets=true";
-                builder.
-                    UseLazyLoadingProxies()
-                    .UseSqlServer(conn);
+                builder
+                    .UseLazyLoadingProxies()
+                    .UseInMemoryDatabase("airline");
             }
         }
 

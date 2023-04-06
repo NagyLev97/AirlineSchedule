@@ -10,8 +10,11 @@ namespace AirlineSchedule.Client
         {
             Console.WriteLine("dd");
 
+            AirlineDbContext ctx = new AirlineDbContext();
 
-            
+            var items = ctx.Airlines.ToArray();
+
+            ;
         }
     }
 }
