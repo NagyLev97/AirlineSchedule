@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AirlineSchedule.Logic\AirlineSchedule.Logic.csproj" />
     <ProjectReference Include="..\AirlineSchedule.Models\AirlineSchedule.Models.csproj" />
     <ProjectReference Include="..\AirlineSchedule.Repository\AirlineSchedule.Repository.csproj" />
   </ItemGroup>

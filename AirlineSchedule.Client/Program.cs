@@ -1,4 +1,5 @@
-﻿using AirlineSchedule.Models;
+﻿using AirlineSchedule.Logic;
+using AirlineSchedule.Models;
 using AirlineSchedule.Repository;
 using System;
 
@@ -8,13 +9,12 @@ namespace AirlineSchedule.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("dd");
+            var ctx = new AirlineDbContext();
+            var repo = new AirlineRepository(ctx);
+            var logic = new AirlineLogic(repo);
 
-            AirlineDbContext ctx = new AirlineDbContext();
-
-            var items = ctx.Airlines.ToArray();
-
-            ;
+            var items = logic.ReadAll();
+            
         }
     }
 }
