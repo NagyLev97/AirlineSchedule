@@ -9,7 +9,21 @@ namespace AirlineSchedule.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AirlineId { get; set; }
 
-        [Required]
+        
         public string Name { get; set; } 
+
+        public virtual ICollection<Flight> Flights { get; set; }
+
+        public Airline()
+        {
+            
+        }
+
+        public Airline(string line)
+        {
+            string[] split = line.Split('#');
+            AirlineId = int.Parse(split[0]);
+            Name = split[1];
+        }
     }
 }

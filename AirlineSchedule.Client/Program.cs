@@ -1,4 +1,5 @@
 ﻿using AirlineSchedule.Models;
+using AirlineSchedule.Repository;
 using System;
 
 namespace AirlineSchedule.Client
@@ -8,6 +9,9 @@ namespace AirlineSchedule.Client
         static void Main(string[] args)
         {
             Console.WriteLine("dd");
+
+
+            
         }
     }
 }

@@ -8,16 +8,29 @@ using System.Threading.Tasks;
 
 namespace AirlineSchedule.Models
 {
-    internal class City
+    public class City
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CityId { get; set; }
 
-        [Required]
+        
         public string Name { get; set; }
 
-        [Required]
+        
         public int Population { get; set; }
+
+        public City()
+        {
+            
+        }
+
+        public City(string line)
+        {
+            string[] split = line.Split('#');
+            CityId = int.Parse(split[0]);
+            Name = split[1];
+            Population = int.Parse(split[2]);
+        }
     }
 }

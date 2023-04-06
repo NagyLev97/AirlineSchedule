@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineSchedule.Client", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineSchedule.Models", "AirlineSchedule.Models\AirlineSchedule.Models.csproj", "{A345B858-41C7-4BFB-B414-A1E530443883}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirlineSchedule.Repository", "AirlineSchedule.Repository\AirlineSchedule.Repository.csproj", "{7FEA4266-03CE-41DC-B9D3-3F387963D187}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A345B858-41C7-4BFB-B414-A1E530443883}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A345B858-41C7-4BFB-B414-A1E530443883}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A345B858-41C7-4BFB-B414-A1E530443883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FEA4266-03CE-41DC-B9D3-3F387963D187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FEA4266-03CE-41DC-B9D3-3F387963D187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FEA4266-03CE-41DC-B9D3-3F387963D187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FEA4266-03CE-41DC-B9D3-3F387963D187}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
