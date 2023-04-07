@@ -33,6 +33,12 @@ namespace AirlineSchedule.Repository
                 .WithMany(flight => flight.Flights)
                 .HasForeignKey(flight => flight.AirlineId)
                 .OnDelete(DeleteBehavior.Cascade)
+
+                //modelBuilder.Entity<Flight>(flight => flight
+                //.HasOne(flight => flight.CityFrom)
+                //.WithMany()
+                //.HasForeignKey(flight => flight.CityFromId);
+
             );
 
             modelBuilder.Entity<Airline>().HasData(new Airline[]
@@ -72,8 +78,17 @@ namespace AirlineSchedule.Repository
                 new Flight("9#2#Washington#Moszkva#1000#9*20*0"),
                 new Flight("10#2#Washington#Dublin#1000#6*10*0"),
                 new Flight("11#2#Párizs#Dublin#1000#2*15*0"),
-                new Flight("12#2#Dublin#London#1000#0*50*0"),
-                new Flight("13#2#Dublin#Lisszabon#1000#2*10*0")
+                //new Flight("12#2#Dublin#London#1000#0*50*0"),
+                new Flight("13#2#Dublin#Lisszabon#1000#2*10*0"),
+
+                new Flight("14#3#Budapest#New York#1000#7*50*0"),
+                new Flight("15#3#Budapest#Lisszabon#1000#1*50*0"),
+                new Flight("16#3#Budapest#Dublin#1000#2*30*0"),
+                new Flight("17#3#New York#Washington#1000#1*20*0"),
+                new Flight("18#3#New York#Moszkva#1000#9*35*0"),
+                new Flight("19#3#Washington#London#1000#6*40*0"),
+                new Flight("20#3#Moszkva#London#1000#4*30*0"),
+                new Flight("21#3#Dublin#Moszkva#1000#5*10*0")
 
            });
             

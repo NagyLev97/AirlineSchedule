@@ -7,7 +7,7 @@ namespace AirlineSchedule.Logic
         void Create(City item);
         void Delete(int id);
         City Read(int id);
-        IQueryable<City> ReadAll();
+        ICollection<City> ReadAll();
         void Update(City item);
         City SmallestCity();
         City BiggestCity();

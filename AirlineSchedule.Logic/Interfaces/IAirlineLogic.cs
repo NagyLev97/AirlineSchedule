@@ -7,7 +7,7 @@ namespace AirlineSchedule.Logic
         void Create(Airline item);
         void Delete(int id);
         Airline Read(int id);
-        IQueryable<Airline> ReadAll();
+        ICollection<Airline> ReadAll();
         void Update(Airline item);
     }
 }

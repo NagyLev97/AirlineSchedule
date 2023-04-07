@@ -24,6 +24,11 @@ namespace AirlineSchedule.Repository
             return airline.Flights;
         }
 
+        public override ICollection<Airline> ReadAll()
+        {
+            return ctx.Airlines.ToList();
+        }
+
         public override void Update(Airline item)
         {
             var old = Read(item.AirlineId);

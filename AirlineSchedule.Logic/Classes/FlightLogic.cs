@@ -32,7 +32,7 @@ namespace AirlineSchedule.Logic
             return this.repo.Read(id);
         }
 
-        public IQueryable<Flight> ReadAll()
+        public ICollection<Flight> ReadAll()
         {
             return this.repo.ReadAll();
         }

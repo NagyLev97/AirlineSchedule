@@ -18,6 +18,11 @@ namespace AirlineSchedule.Repository
             return ctx.Flights.FirstOrDefault(t => t.FlightId == id);
         }
 
+        public override ICollection<Flight> ReadAll()
+        {
+            return ctx.Flights.ToList();
+        }
+
         public override void Update(Flight item)
         {
             var old = Read(item.FlightId);

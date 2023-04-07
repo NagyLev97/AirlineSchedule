@@ -18,6 +18,11 @@ namespace AirlineSchedule.Repository
             return ctx.Cities.FirstOrDefault(t => t.CityId == id);
         }
 
+        public override ICollection<City> ReadAll()
+        {
+            return ctx.Cities.ToList();
+        }
+
         public override void Update(City item)
         {
             var old = Read(item.CityId);

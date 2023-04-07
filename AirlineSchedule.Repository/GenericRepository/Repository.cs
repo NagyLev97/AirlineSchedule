@@ -26,10 +26,7 @@ namespace AirlineSchedule.Repository
             ctx.SaveChanges();
         }
 
-        public IQueryable<T> ReadAll()
-        {
-            return ctx.Set<T>();
-        }
+        public abstract ICollection<T> ReadAll();
 
         public abstract T Read(int id);
         public abstract void Update(T item);

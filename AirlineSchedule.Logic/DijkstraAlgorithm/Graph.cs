@@ -57,7 +57,7 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
                 }
             }
 
-         
+
 
             //Sum time
             int goalIndex = NodedIndex(goal);
@@ -66,7 +66,8 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
 
             //Reached cities
             List<T> cities = new List<T>();
-            while (!goal.Equals(start))
+
+            while (goal != null && !goal.Equals(start))
             {
                 cities.Add(goal);
                 goal = n[goalIndex];
@@ -98,8 +99,8 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
 
             return toDelete;
         }
-        
+
     }
 
-    
+
 }

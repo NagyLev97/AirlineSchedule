@@ -29,7 +29,7 @@ namespace AirlineSchedule.Logic
             return this.repo.Read(id);
         }
 
-        public IQueryable<Airline> ReadAll()
+        public ICollection<Airline> ReadAll()
         {
             return this.repo.ReadAll();
         }
@@ -50,6 +50,7 @@ namespace AirlineSchedule.Logic
 
             return cities;
         }
+
 
     }
 }
