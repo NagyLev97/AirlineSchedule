@@ -10,11 +10,17 @@ namespace AirlineSchedule.Client
         static void Main(string[] args)
         {
             var ctx = new AirlineDbContext();
-            var repo = new AirlineRepository(ctx);
-            var logic = new AirlineLogic(repo);
 
-            var items = logic.ReadAll();
-            
+            var repo = new CityRepository(ctx);
+
+            var cityLogic = new CityLogic(repo);
+
+            var small = cityLogic.SmallestCity();
+
+            var big = cityLogic.BiggestCity();
+
+            ;
+
         }
     }
 }

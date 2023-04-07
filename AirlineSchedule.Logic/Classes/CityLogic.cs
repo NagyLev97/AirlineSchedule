@@ -44,7 +44,12 @@ namespace AirlineSchedule.Logic
 
         public City SmallestCity()
         {
+            return this.repo.ReadAll().OrderBy(t => t.Population).FirstOrDefault();
+        }
 
+        public City BiggestCity()
+        {
+            return this.repo.ReadAll().OrderByDescending(t => t.Population).FirstOrDefault();
         }
     }
 }

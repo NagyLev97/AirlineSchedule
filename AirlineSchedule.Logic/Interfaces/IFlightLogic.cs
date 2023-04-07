@@ -9,5 +9,6 @@ namespace AirlineSchedule.Logic
         Flight Read(int id);
         IQueryable<Flight> ReadAll();
         void Update(Flight item);
+        
     }
 }

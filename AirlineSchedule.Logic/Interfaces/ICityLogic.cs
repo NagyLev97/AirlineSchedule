@@ -9,5 +9,7 @@ namespace AirlineSchedule.Logic
         City Read(int id);
         IQueryable<City> ReadAll();
         void Update(City item);
+        City SmallestCity();
+        City BiggestCity();
     }
 }
