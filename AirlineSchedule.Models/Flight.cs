@@ -14,11 +14,11 @@ namespace AirlineSchedule.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FlightId { get; set; }
 
-        
-        public string CityFrom { get; set; }
+        public int CityFromId { get; set; }
+        public virtual City CityFrom { get; set; }
 
-        
-        public string CityTo { get; set; }
+        public int CityToId { get; set; }
+        public virtual City CityTo { get; set; }
 
         
         public int Distance { get; set; }
@@ -26,8 +26,6 @@ namespace AirlineSchedule.Models
         
         public TimeSpan FlightTime { get; set; }
 
-       
-        //public DateTime StartingTime { get; set; }
 
         public int AirlineId { get; set; }
 
@@ -43,8 +41,8 @@ namespace AirlineSchedule.Models
             string[] split = line.Split('#');
             FlightId = int.Parse(split[0]);
             AirlineId = int.Parse(split[1]);
-            CityFrom = split[2];
-            CityTo = split[3];
+            CityFromId = int.Parse(split[2]);
+            CityToId = int.Parse(split[3]);
             Distance = int.Parse(split[4]);
             //StartingTime = DateTime.Parse(split[5].Replace('*', '.'));
             FlightTime = TimeSpan.Parse(split[5].Replace('*', ':'));

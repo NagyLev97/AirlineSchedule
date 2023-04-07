@@ -1,4 +1,6 @@
-﻿using AirlineSchedule.Models;
+﻿using AirlineSchedule.Logic.Classes;
+using AirlineSchedule.Logic.DijkstraAlgorithm;
+using AirlineSchedule.Models;
 using AirlineSchedule.Repository;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AirlineSchedule.Logic.DijkstraAlgorithm
+namespace AirlineSchedule.Logic
 {
     public class BuildGraph
     {
@@ -15,7 +17,7 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
         {
             cityGraph = new GraphNeighbourList<City>();
         }
-         
+
         public void AddNodes(CityRepository repo)
         {
             foreach (City city in repo.ReadAll())
@@ -28,19 +30,16 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
         {
             foreach (Flight flight in flights)
             {
-                City from = cityRepo.ReadAll().Where(c => c.Name == flight.CityFrom).FirstOrDefault();
-                City to = cityRepo.ReadAll().Where(c => c.Name == flight.CityTo).FirstOrDefault();
-
-                cityGraph.NewEdge(from, to, TimeToIntWithWaiting(flight.FlightTime));
+                cityGraph.NewEdge(flight.CityFrom, flight.CityTo, TimeToIntWithWaiting(flight.FlightTime));
             }
         }
-        
+
         public List<City> Dijkstra(City start, City goal, ref double weightSum)
         {
             return cityGraph.Dijkstra(start, goal, ref weightSum);
         }
 
-       
+
 
         public int TimeToIntWithWaiting(TimeSpan time)
         {

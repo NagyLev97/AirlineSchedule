@@ -1,4 +1,5 @@
-﻿using AirlineSchedule.Logic;
+﻿using AirlineSchedule.Client.Helper;
+using AirlineSchedule.Logic;
 using AirlineSchedule.Logic.DijkstraAlgorithm;
 using AirlineSchedule.Models;
 using AirlineSchedule.Repository;
@@ -42,6 +43,7 @@ namespace AirlineSchedule.Client
             {
                 List<City> cities = airlineLogic.ShortestJourney(airlineRepo.ReadAllFlights(i), cityRepo, budapest, london, ref sumTime);
                 Display(cities, london, sumTime, i, airlineRepo);
+                sumTime = 0;
                 
             }
 
@@ -62,7 +64,7 @@ namespace AirlineSchedule.Client
 
             List<City> citiesWithAllAirlines = airlineLogic.ShortestJourney(flights, cityRepo, budapest, london, ref allSumTime);
             Console.WriteLine("Bármely légitársasággal a legrövidebb út:");
-            DisplayWithAllAirlines(citiesWithAllAirlines, london, allSumTime, airlineRepo);
+            DisplayWithAllAirlines(citiesWithAllAirlines, london, allSumTime, airlineRepo, flights);
             ;
 
 
@@ -70,7 +72,6 @@ namespace AirlineSchedule.Client
 
             Console.ReadKey();
 
-            ;
 
         }
 
@@ -86,12 +87,16 @@ namespace AirlineSchedule.Client
             }
             else
             {
+                int[] times = new int[2];
                 while (cities[i] != to)
                 {
-                    Console.WriteLine("\t\t" + cities[i].Name + " -> " + cities[i - 1].Name + ": " + "x perc");
+                    times = FlightTime.GetTime(repo, id, cities[i].Name, cities[i - 1].Name);  
+                    Console.WriteLine("\t\t" + cities[i].Name + " -> " + cities[i - 1].Name + ": " + times[0] + " óra " + times[1] + " perc");
                     i--;
                 }
                 Console.WriteLine("\t\t------");
+
+                sumTime = sumTime - (60 - times[1]);
                 double hour = Math.Round((sumTime / 60));
                 double minute = sumTime % 60;
                 Console.WriteLine("\tÖsszesen: " + hour + " óra " + minute + " perc");
@@ -99,7 +104,7 @@ namespace AirlineSchedule.Client
             Console.WriteLine();
         }
 
-        static void DisplayWithAllAirlines(List<City> cities, City to, double sumTime, AirlineRepository repo)
+        static void DisplayWithAllAirlines(List<City> cities, City to, double sumTime, AirlineRepository repo, List<Flight> flights)
         {
             int i = cities.Count() - 1;
 
@@ -107,9 +112,12 @@ namespace AirlineSchedule.Client
             {
                 Console.WriteLine("\tNincs útvonal");
             }
+            int[] times = new int[2];
             while (cities[i] != to)
             {
-                Console.WriteLine("\t" + cities[i].Name + " -> " + cities[i - 1].Name + ": " + "x perc");
+                int id = AirlineHelper.GetAirline(flights, cities[i].Name, cities[i - 1].Name);
+                times = FlightTime.GetTime(repo, id, cities[i].Name, cities[i - 1].Name);
+                Console.WriteLine("\t\t" + repo.Read(id).Name + ": " + cities[i].Name + " -> " + cities[i - 1].Name + ": " + times[0] + " óra " + times[1] + " perc");
                 i--;
             }
             Console.WriteLine("\t------");
