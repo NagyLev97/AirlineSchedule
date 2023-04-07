@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirlineSchedule.Logic.DijkstraAlgorithm
 {
-    class GraphNeighbourList<T> : Graph<T>
+    public class GraphNeighbourList<T> : Graph<T>
     {
         List<T> contents;
         List<List<Edge>> neighbours;

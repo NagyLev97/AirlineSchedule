@@ -27,7 +27,7 @@ namespace AirlineSchedule.Models
         public TimeSpan FlightTime { get; set; }
 
        
-        public DateTime StartingTime { get; set; }
+        //public DateTime StartingTime { get; set; }
 
         public int AirlineId { get; set; }
 
@@ -46,8 +46,8 @@ namespace AirlineSchedule.Models
             CityFrom = split[2];
             CityTo = split[3];
             Distance = int.Parse(split[4]);
-            StartingTime = DateTime.Parse(split[5].Replace('*', '.'));
-            FlightTime = TimeSpan.Parse(split[6].Replace('*', ':'));
+            //StartingTime = DateTime.Parse(split[5].Replace('*', '.'));
+            FlightTime = TimeSpan.Parse(split[5].Replace('*', ':'));
         }
     }
 }

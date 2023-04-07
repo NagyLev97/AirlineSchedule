@@ -25,7 +25,7 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
 
         protected abstract List<Edge> Neighbours(T node);
 
-        public void Dijkstra(T start)
+        public List<T> Dijkstra(T start, T goal, ref double sumWeight)
         {
             double[] d = new double[NodeSum];
             T[] n = new T[NodeSum];
@@ -58,7 +58,20 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
             }
 
 
+            //Sum time
+            int goalIndex = NodedIndex(goal);
+            sumWeight = d[goalIndex];
 
+            //Reached cities
+            List<T> cities = new List<T>();
+            while (!goal.Equals(start))
+            {
+                cities.Add(goal);
+                goal = n[goalIndex];
+                goalIndex = NodedIndex(goal);
+            }
+
+            return cities;
         }
 
         private T MinTake(List<T> S, double[] d)
