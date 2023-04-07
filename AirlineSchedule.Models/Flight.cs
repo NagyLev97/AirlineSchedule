@@ -22,17 +22,5 @@ namespace AirlineSchedule.Models
         {
             
         }
-
-        public Flight(string line)
-        {
-            string[] split = line.Split('#');
-            Id = int.Parse(split[0]);
-            AirlineId = int.Parse(split[1]);
-            CityFromId = int.Parse(split[2]);
-            CityToId = int.Parse(split[3]);
-            Distance = int.Parse(split[4]);
-            //StartingTime = DateTime.Parse(split[5].Replace('*', '.'));
-            FlightTime = TimeSpan.Parse(split[5].Replace('*', ':'));
-        }
     }
 }

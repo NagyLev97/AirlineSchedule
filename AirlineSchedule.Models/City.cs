@@ -13,13 +13,5 @@
         {
             
         }
-
-        public City(string line)
-        {
-            string[] split = line.Split('#');
-            Id = int.Parse(split[0]);
-            Name = split[1];
-            Population = int.Parse(split[2]);
-        }
     }
 }

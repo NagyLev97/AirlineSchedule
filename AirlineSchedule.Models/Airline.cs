@@ -15,12 +15,5 @@ namespace AirlineSchedule.Models
         {
             
         }
-
-        public Airline(string line)
-        {
-            string[] split = line.Split('#');
-            Id = int.Parse(split[0]);
-            Name = split[1];
-        }
     }
 }
