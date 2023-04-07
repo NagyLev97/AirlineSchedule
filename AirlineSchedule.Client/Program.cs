@@ -1,9 +1,7 @@
 ﻿using AirlineSchedule.Client.Helper;
 using AirlineSchedule.Logic;
-using AirlineSchedule.Logic.DijkstraAlgorithm;
 using AirlineSchedule.Models;
 using AirlineSchedule.Repository;
-using System;
 
 namespace AirlineSchedule.Client
 {
@@ -14,12 +12,16 @@ namespace AirlineSchedule.Client
             
             var ctx = new AirlineDbContext();
 
-            var cityRepo = new CityRepository(ctx);
-            var flightRepo = new FlightRepository(ctx);
-            var airlineRepo = new AirlineRepository(ctx);
+            var cityLogic = new CityLogic(new CityRepository(ctx));
+            var airlineLogic = new AirlineLogic(new AirlineRepository(ctx));
+            var flightLogic = new FlightLogic(new FlightRepository(ctx));
 
-            var cityLogic = new CityLogic(cityRepo);
-            var airlineLogic = new AirlineLogic(airlineRepo);
+
+            //--------------------------------------------------
+
+            var flights = flightLogic.ReadAll().ToList();
+
+            //--------------------------------------------------
 
             //--------------------------------------------------
 
@@ -35,36 +37,35 @@ namespace AirlineSchedule.Client
 
             double sumTime = 0;
 
-            City budapest = cityRepo.Read(1);
-            City london = cityRepo.Read(2);
+            City budapest = cityLogic.Read(1);
+            City london = cityLogic.Read(2);
 
             Console.WriteLine("A legrövidebb út: ");
-            for (int i = 1; i < airlineRepo.ReadAll().Count()+1; i++)
+            for (int i = 1; i < airlineLogic.ReadAll().Count()+1; i++)
             {
-                List<City> cities = airlineLogic.ShortestJourney(airlineRepo.ReadAllFlights(i), cityRepo, budapest, london, ref sumTime);
-                Display(cities, london, sumTime, i, airlineRepo);
+                List<City> cities = airlineLogic.ShortestJourney(flights, cityLogic, budapest, london, ref sumTime);
+                Display(cities, london, sumTime, i, airlineLogic);
                 sumTime = 0;
                 
             }
 
             //--------------------------------------------------
 
+            /*
             List<Flight> flights = new List<Flight>();
-            ICollection<Airline> airlines = airlineRepo.ReadAll();
+            ICollection<Airline> airlines = airlineLogic.ReadAll();
 
             for (int i = 1; i < airlines.Count() + 1; i++)
             {
-                foreach (var item in airlineRepo.ReadAllFlights(i))
-                {
-                    flights.Add(item);
-                }
+                flights.AddRange(airlineLogic.ReadAllFlights(i));
             }
+            */
 
             double allSumTime = 0;
 
-            List<City> citiesWithAllAirlines = airlineLogic.ShortestJourney(flights, cityRepo, budapest, london, ref allSumTime);
+            List<City> citiesWithAllAirlines = airlineLogic.ShortestJourney(flights, cityLogic, budapest, london, ref allSumTime);
             Console.WriteLine("Bármely légitársasággal a legrövidebb út:");
-            DisplayWithAllAirlines(citiesWithAllAirlines, london, allSumTime, airlineRepo, flights);
+            DisplayWithAllAirlines(citiesWithAllAirlines, london, allSumTime, airlineLogic, flights);
             ;
 
 
@@ -75,9 +76,9 @@ namespace AirlineSchedule.Client
 
         }
 
-        static void Display(List<City> cities, City to, double sumTime, int id, AirlineRepository repo)
+        static void Display(List<City> cities, City to, double sumTime, int id, AirlineLogic airlineLogic)
         {
-            Airline airline = repo.Read(id);
+            Airline airline = airlineLogic.Read(id);
             Console.WriteLine($"\t{airline.Name}:");
             int i = cities.Count() - 1;
             
@@ -90,7 +91,7 @@ namespace AirlineSchedule.Client
                 int[] times = new int[2];
                 while (cities[i] != to)
                 {
-                    times = FlightTime.GetTime(repo, id, cities[i].Name, cities[i - 1].Name);  
+                    times = FlightTime.GetTime(airlineLogic, id, cities[i].Name, cities[i - 1].Name);  
                     Console.WriteLine("\t\t" + cities[i].Name + " -> " + cities[i - 1].Name + ": " + times[0] + " óra " + times[1] + " perc");
                     i--;
                 }
@@ -104,7 +105,7 @@ namespace AirlineSchedule.Client
             Console.WriteLine();
         }
 
-        static void DisplayWithAllAirlines(List<City> cities, City to, double sumTime, AirlineRepository repo, List<Flight> flights)
+        static void DisplayWithAllAirlines(List<City> cities, City to, double sumTime, AirlineLogic airlineLogic, List<Flight> flights)
         {
             int i = cities.Count() - 1;
 
@@ -112,12 +113,12 @@ namespace AirlineSchedule.Client
             {
                 Console.WriteLine("\tNincs útvonal");
             }
-            int[] times = new int[2];
+            int[] times;
             while (cities[i] != to)
             {
                 int id = AirlineHelper.GetAirline(flights, cities[i].Name, cities[i - 1].Name);
-                times = FlightTime.GetTime(repo, id, cities[i].Name, cities[i - 1].Name);
-                Console.WriteLine("\t\t" + repo.Read(id).Name + ": " + cities[i].Name + " -> " + cities[i - 1].Name + ": " + times[0] + " óra " + times[1] + " perc");
+                times = FlightTime.GetTime(airlineLogic, id, cities[i].Name, cities[i - 1].Name);
+                Console.WriteLine("\t\t" + airlineLogic.Read(id).Name + ": " + cities[i].Name + " -> " + cities[i - 1].Name + ": " + times[0] + " óra " + times[1] + " perc");
                 i--;
             }
             Console.WriteLine("\t------");

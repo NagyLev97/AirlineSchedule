@@ -1,56 +1,57 @@
-﻿using System;
-using AirlineSchedule.Logic.DijkstraAlgorithm;
-using AirlineSchedule.Models;
+﻿using AirlineSchedule.Models;
 using AirlineSchedule.Repository;
+using System.Collections.Generic;
 
 namespace AirlineSchedule.Logic
 {
     public class AirlineLogic : IAirlineLogic
     {
-        IRepository<Airline> repo;
+        private readonly IRepository<Airline> _repo;
 
         public AirlineLogic(IRepository<Airline> repo)
         {
-            this.repo = repo;
+            this._repo = repo;
         }
 
         public void Create(Airline item)
         {
-            this.repo.Create(item);
+            this._repo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.repo.Delete(id);
+            this._repo.Delete(id);
         }
 
         public Airline Read(int id)
         {
-            return this.repo.Read(id);
+            return this._repo.Read(id);
         }
 
         public ICollection<Airline> ReadAll()
         {
-            return this.repo.ReadAll();
+            return this._repo.ReadAll();
         }
 
         public void Update(Airline item)
         {
-            this.repo.Update(item);
+            this._repo.Update(item);
         }
 
-        public List<City> ShortestJourney(ICollection<Flight> flights, CityRepository cityRepo, City from, City where, ref double sumTime)
+        public List<City> ShortestJourney(ICollection<Flight> flights, 
+            CityLogic cityLogic,
+            City from, 
+            City where,
+            ref double sumTime)
         {
             BuildGraph graph = new BuildGraph();
 
-            graph.AddNodes(cityRepo);
-            graph.AddEdges(flights, cityRepo);
+            graph.AddNodes(cityLogic);
+            graph.AddEdges(flights);
 
             List<City> cities = graph.Dijkstra(from, where, ref sumTime);
 
             return cities;
         }
-
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AirlineSchedule.Models;
+using System.Collections.Generic;
 
 namespace AirlineSchedule.Logic
 {
@@ -9,6 +10,5 @@ namespace AirlineSchedule.Logic
         Flight Read(int id);
         ICollection<Flight> ReadAll();
         void Update(Flight item);
-        
     }
 }

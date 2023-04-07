@@ -1,4 +1,5 @@
 ﻿using AirlineSchedule.Models;
+using System.Collections.Generic;
 
 namespace AirlineSchedule.Logic
 {

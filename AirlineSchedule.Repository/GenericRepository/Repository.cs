@@ -1,12 +1,10 @@
-﻿using System;
+﻿using AirlineSchedule.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirlineSchedule.Repository
 {
-    public abstract class Repository<T> : IRepository<T> where T : class
+    public abstract class Repository<T> : IRepository<T> where T : BaseModel
     {
         protected AirlineDbContext ctx;
 
@@ -26,9 +24,24 @@ namespace AirlineSchedule.Repository
             ctx.SaveChanges();
         }
 
-        public abstract ICollection<T> ReadAll();
+        public ICollection<T> ReadAll()
+        {
+            return ctx.Set<T>().ToList();
+        }
 
-        public abstract T Read(int id);
-        public abstract void Update(T item);
+        public T Read(int id)
+        {
+            return ctx.Set<T>().FirstOrDefault(t => t.Id == id);
+        }
+
+        public void Update(T item)
+        {
+            var old = Read(item.Id);
+            foreach (var prop in old.GetType().GetProperties())
+            {
+                prop.SetValue(old, prop.GetValue(item));
+            }
+            ctx.SaveChanges();
+        }
     }
 }

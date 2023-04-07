@@ -1,5 +1,4 @@
-﻿using System;
-using AirlineSchedule.Models;
+﻿using AirlineSchedule.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AirlineSchedule.Repository

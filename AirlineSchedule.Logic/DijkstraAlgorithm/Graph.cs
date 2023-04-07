@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirlineSchedule.Logic.DijkstraAlgorithm
 {
@@ -13,6 +10,7 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
             public T to;
             public double weight;
         }
+
         public abstract void NewNood(T content);
 
         public abstract void NewEdge(T from, T to, double weight);

@@ -1,45 +1,41 @@
 ﻿using AirlineSchedule.Models;
 using AirlineSchedule.Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirlineSchedule.Logic
 {
     public class FlightLogic : IFlightLogic
     {
-        IRepository<Flight> repo;
+        private readonly IRepository<Flight> _repo;
 
         public FlightLogic(IRepository<Flight> repo)
         {
-            this.repo = repo;
+            _repo = repo;
         }
 
         public void Create(Flight item)
         {
-            this.repo.Create(item);
+            _repo.Create(item);
         }
 
         public void Delete(int id)
         {
-            this.repo.Delete(id);
+            _repo.Delete(id);
         }
 
         public Flight Read(int id)
         {
-            return this.repo.Read(id);
+            return _repo.Read(id);
         }
 
         public ICollection<Flight> ReadAll()
         {
-            return this.repo.ReadAll();
+            return _repo.ReadAll();
         }
 
         public void Update(Flight item)
         {
-            this.repo.Update(item);
+            _repo.Update(item);
         }
 
     }
