@@ -24,20 +24,35 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
             }
         }
 
-        public void AddEdges(FlightRepository flightRepo, CityRepository cityRepo)
+        public void AddEdges(ICollection<Flight> flights, CityRepository cityRepo)
         {
-            foreach (Flight flight in flightRepo.ReadAll())
+            foreach (Flight flight in flights)
             {
                 City from = cityRepo.ReadAll().Where(c => c.Name == flight.CityFrom).FirstOrDefault();
                 City to = cityRepo.ReadAll().Where(c => c.Name == flight.CityTo).FirstOrDefault();
 
-                cityGraph.NewEdge(from, to, 5);
+                cityGraph.NewEdge(from, to, TimeToIntWithWaiting(flight.FlightTime));
             }
         }
         
         public List<City> Dijkstra(City start, City goal, ref double weightSum)
         {
             return cityGraph.Dijkstra(start, goal, ref weightSum);
+        }
+
+       
+
+        public int TimeToIntWithWaiting(TimeSpan time)
+        {
+            int flightTime = time.Hours * 60 + time.Minutes + time.Seconds;
+            int WaitingTime = 60 - (flightTime % 60);
+            return flightTime + WaitingTime;
+        }
+
+        public int TimeToInt(TimeSpan time)
+        {
+            int flightTime = time.Hours * 60 + time.Minutes + time.Seconds;
+            return flightTime;
         }
     }
 }

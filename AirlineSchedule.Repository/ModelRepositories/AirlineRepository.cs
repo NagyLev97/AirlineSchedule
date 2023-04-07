@@ -18,6 +18,12 @@ namespace AirlineSchedule.Repository
             return ctx.Airlines.FirstOrDefault(t => t.AirlineId == id);
         }
 
+        public ICollection<Flight> ReadAllFlights(int id)
+        {
+            Airline airline = Read(id);
+            return airline.Flights;
+        }
+
         public override void Update(Airline item)
         {
             var old = Read(item.AirlineId);
