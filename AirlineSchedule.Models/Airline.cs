@@ -6,14 +6,8 @@ namespace AirlineSchedule.Models
 {
     public class Airline : BaseModel
     {
-        
         public string Name { get; set; } 
 
         public virtual ICollection<Flight> Flights { get; set; }
-
-        public Airline()
-        {
-            
-        }
     }
 }

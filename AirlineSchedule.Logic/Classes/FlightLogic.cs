@@ -37,6 +37,5 @@ namespace AirlineSchedule.Logic
         {
             _repo.Update(item);
         }
-
     }
 }

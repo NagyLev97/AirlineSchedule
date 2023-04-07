@@ -10,7 +10,6 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
             public T to;
             public double weight;
         }
-
         public abstract void NewNood(T content);
 
         public abstract void NewEdge(T from, T to, double weight);
@@ -55,12 +54,9 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
                 }
             }
 
-
-
             //Sum time
             int goalIndex = NodedIndex(goal);
             sumWeight = d[goalIndex];
-
 
             //Reached cities
             List<T> cities = new List<T>();
@@ -97,8 +93,5 @@ namespace AirlineSchedule.Logic.DijkstraAlgorithm
 
             return toDelete;
         }
-
     }
-
-
 }

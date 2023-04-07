@@ -2,7 +2,7 @@
 
 namespace AirlineSchedule.Repository
 {
-    public class CityRepository : Repository<City>, IRepository<City>
+    public class CityRepository : Repository<City>
     {
         public CityRepository(AirlineDbContext ctx) : base(ctx)
         {

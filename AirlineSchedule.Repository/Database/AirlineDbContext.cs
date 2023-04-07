@@ -358,7 +358,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(4,21,0)
                },
 
-                new Flight() // Reykjavík -> Athén
+               new Flight() // Reykjavík -> Athén
                {
                    Id = 30,
                    AirlineId = 3,
@@ -368,7 +368,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(5,7,0)
                },
 
-                new Flight() // Reykjavík -> Budapest
+               new Flight() // Reykjavík -> Budapest
                {
                    Id = 31,
                    AirlineId = 3,
@@ -378,7 +378,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(3,48,0)
                },
 
-                new Flight() // Reykjavík -> Dublin
+               new Flight() // Reykjavík -> Dublin
                {
                    Id = 32,
                    AirlineId = 3,
@@ -388,7 +388,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(1,53,0)
                },
 
-                new Flight() // Athén -> Moszkva
+               new Flight() // Athén -> Moszkva
                {
                    Id = 33,
                    AirlineId = 3,
@@ -398,7 +398,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(2,49,0)
                },
 
-                new Flight() // Athén -> Toronto
+               new Flight() // Athén -> Toronto
                {
                    Id = 34,
                    AirlineId = 3,
@@ -408,7 +408,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(10,2,0)
                },
 
-                new Flight() // Budapest -> Párizs
+               new Flight() // Budapest -> Párizs
                {
                    Id = 35,
                    AirlineId = 3,
@@ -418,7 +418,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(1,38,0)
                },
 
-                new Flight() // Budapest -> Washington
+               new Flight() // Budapest -> Washington
                {
                    Id = 36,
                    AirlineId = 3,
@@ -428,7 +428,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(9,17,0)
                },
 
-                new Flight() // Dublin -> London
+               new Flight() // Dublin -> London
                {
                    Id = 37,
                    AirlineId = 3,
@@ -438,7 +438,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(0,32,0)
                },
 
-                new Flight() // Dublin -> Budapest
+               new Flight() // Dublin -> Budapest
                {
                    Id = 38,
                    AirlineId = 3,
@@ -448,7 +448,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(2,23,0)
                },
 
-                new Flight() // Dublin -> Lisszabon
+               new Flight() // Dublin -> Lisszabon
                {
                    Id = 39,
                    AirlineId = 3,
@@ -458,7 +458,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(2,22,0)
                },
 
-                new Flight() // London -> Athén
+               new Flight() // London -> Athén
                {
                    Id = 40,
                    AirlineId = 3,
@@ -468,7 +468,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(3,59,0)
                },
 
-                new Flight() // Párizs -> London
+               new Flight() // Párizs -> London
                {
                    Id = 41,
                    AirlineId = 3,
@@ -478,7 +478,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(0,20,0)
                },
 
-                new Flight() // Párizs -> Washington
+               new Flight() // Párizs -> Washington
                {
                    Id = 42,
                    AirlineId = 3,
@@ -488,7 +488,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(7,50,0)
                },
 
-                new Flight() // London -> Los Angeles
+               new Flight() // London -> Los Angeles
                {
                    Id = 43,
                    AirlineId = 3,
@@ -498,7 +498,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(8,12,0)
                },
 
-                new Flight() // Washington -> Torontó
+               new Flight() // Washington -> Torontó
                {
                    Id = 44,
                    AirlineId = 3,
@@ -508,7 +508,7 @@ namespace AirlineSchedule.Repository
                    FlightTime = new System.TimeSpan(0,40,0)
                },
 
-                new Flight() // Torontó -> Los Angeles
+               new Flight() // Torontó -> Los Angeles
                {
                    Id = 45,
                    AirlineId = 3,
@@ -517,10 +517,7 @@ namespace AirlineSchedule.Repository
                    Distance = 3494,
                    FlightTime = new System.TimeSpan(4,11,0)
                }
-
            });
-
         }
-
     }
 }

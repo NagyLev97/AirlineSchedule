@@ -23,8 +23,6 @@ namespace AirlineSchedule.Client
 
             //--------------------------------------------------
 
-            //--------------------------------------------------
-
             var small = cityLogic.SmallestCity();
             Console.WriteLine($"Legkisebb város: {small.Name}, {small.Population} lakos");
 
@@ -37,9 +35,6 @@ namespace AirlineSchedule.Client
 
             double sumTime = 0;
 
-            City budapest = cityLogic.Read(1);
-            City london = cityLogic.Read(2);
-
             Console.WriteLine("A legrövidebb út: ");
             for (int i = 1; i < airlineLogic.ReadAll().Count() + 1; i++) 
             {
@@ -51,29 +46,15 @@ namespace AirlineSchedule.Client
 
             //--------------------------------------------------
 
-            /*
-            List<Flight> flights = new List<Flight>();
-            ICollection<Airline> airlines = airlineLogic.ReadAll();
-
-            for (int i = 1; i < airlines.Count() + 1; i++)
-            {
-                flights.AddRange(airlineLogic.ReadAllFlights(i));
-            }
-            */
-
             double allSumTime = 0;
 
             List<City> citiesWithAllAirlines = airlineLogic.ShortestJourney(flights, cityLogic, small, big, ref allSumTime);
             Console.WriteLine("Bármely légitársasággal a legrövidebb út:");
             DisplayWithAllAirlines(citiesWithAllAirlines, big, allSumTime, airlineLogic, flights);
-            ;
-
 
             //--------------------------------------------------
 
             Console.ReadKey();
-
-
         }
 
         static void Display(List<City> cities, City to, double sumTime, int id, AirlineLogic airlineLogic)
@@ -91,16 +72,17 @@ namespace AirlineSchedule.Client
                 int[] times = new int[2];
                 while (cities[i] != to)
                 {
-                    
                     times = FlightTime.GetTime(airlineLogic, id, cities[i].Name, cities[i - 1].Name);  
                     Console.WriteLine("\t\t" + cities[i].Name + " -> " + cities[i - 1].Name + ": " + times[0] + " óra " + times[1] + " perc");
                     i--;
                 }
+
                 Console.WriteLine("\t\t------");
 
                 sumTime = sumTime - (60 - times[1]);
                 double hour = Math.Round((sumTime / 60));
                 double minute = sumTime % 60;
+
                 Console.WriteLine("\tÖsszesen: " + hour + " óra " + minute + " perc");
             }
             Console.WriteLine();
@@ -123,11 +105,13 @@ namespace AirlineSchedule.Client
                 Console.WriteLine("\t\t" + airlineLogic.Read(id).Name + ": " + cities[i].Name + " -> " + cities[i - 1].Name + ": " + times[0] + " óra " + times[1] + " perc");
                 i--;
             }
+
             Console.WriteLine("\t------");
 
             sumTime = sumTime - (60 - times[1]);
             double hour = Math.Round((sumTime / 60));
             double minute = sumTime % 60;
+
             Console.WriteLine("\tÖsszesen: " + hour + " óra " + minute + " perc");
             Console.WriteLine();
         }
